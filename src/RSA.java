@@ -15,16 +15,16 @@ public class RSA {
 
         // Calcolo di n e φ(n)
         BigInteger n = p.multiply(q); // n = p * q
-        BigInteger φ = (p.subtract(BigInteger.ONE)).multiply(q.subtract(BigInteger.ONE)); // φ(n) = (p-1)*(q-1)
+        BigInteger phi = (p.subtract(BigInteger.ONE)).multiply(q.subtract(BigInteger.ONE)); // φ(n) = (p-1)*(q-1)
 
         // Scelta di e
         BigInteger e;
         do {
             e = BigInteger.probablePrime(bitLength / 2, random); // Sceglie un numero primo per e
-        } while (!e.gcd(φ).equals(BigInteger.ONE) || e.compareTo(φ) >= 0); // e deve essere coprimo di φ(n)
+        } while (!e.gcd(phi).equals(BigInteger.ONE) || e.compareTo(phi) >= 0); // e deve essere coprimo di φ(n)
 
         // Calcolo di d
-        BigInteger d = e.modInverse(φ);
+        BigInteger d = e.modInverse(phi);
 
         // Visualizzazione delle chiavi
         System.out.println("Chiave pubblica: (e=" + e + ", n=" + n + ")");
